@@ -1,0 +1,21 @@
+{
+  "rules": {
+    "arrow-parens": true,
+    "no-duplicate-variable": true,
+    "member-access": false,
+    "member-ordering": [true, {
+      "order": [
+        "public-instance-method",
+        "protected-instance-method",
+        "private-instance-method"
+      ]
+    }],
+    "semicolon": [
+      true,
+      "always"
+    ]
+  },
+  "rulesDirectory": [
+    "node_modules/tslint-eslint-rules/dist/rules"
+  ]
+}
