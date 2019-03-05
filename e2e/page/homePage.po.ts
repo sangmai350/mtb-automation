@@ -13,6 +13,12 @@ export class HomePage extends AbtractPage {
         await this.click(HomePageUI.MY_ACCOUNT_BUTTON);
     }
 
+    async searchForProduct(name: string) {
+        await this.waitForElementVisible(HomePageUI.SEARCH_PRODUCT_IPT);
+        await this.type(HomePageUI.SEARCH_PRODUCT_IPT, name);
+        await this.click(HomePageUI.SEARCH_PRODUCT_BTN);
+    }
+
     constructor() {
         super();
     }

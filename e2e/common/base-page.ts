@@ -93,9 +93,7 @@ export class BasePage extends BaseElement {
   async isElementDisplayed(locator: string, param?: string) {
     try {
       const el = param ? this.findElement(locator, param) : this.findElement(locator);
-      return await el.waitReady().then(() => {
-        return el.isDisplayed();
-      });
+      return el.isDisplayed();
     } catch (e) {
       return false;
     }
@@ -190,6 +188,10 @@ export class BasePage extends BaseElement {
       const el = this.findElement(locator);
       await browser.wait(condition.presenceOf(el), timeWait);
     } catch (e) {}
+  }
+
+  static getUniqueId(characters: number) {
+    return '_' + Math.random().toString(36).substr(2, characters);
   }
 
   async getDay(dateTime: string) {
@@ -363,3 +365,5 @@ export class BasePage extends BaseElement {
     }
   }
 }
+
+

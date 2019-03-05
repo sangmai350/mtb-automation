@@ -1,3 +1,3 @@
 export class BasePageUI {
-  static readonly SHOPPING_BAG_HEADER = 'xpath=//h1[contains(.,"SHOPPING BAG")]'
+  static readonly VALIDATION_ERROR_MSG = 'xpath=//p[@data-validation-error="block" and text() = "%s"]'
 }
