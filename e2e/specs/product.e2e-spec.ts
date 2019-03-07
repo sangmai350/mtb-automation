@@ -16,11 +16,23 @@ const PRODUCT_COLOUR = "Blue - Pink"
 const FIRST_NAME = "Sang"
 const LAST_NAME = "Mai"
 const EMAIL = "qa" + BasePage.getUniqueId(5) + "@gmail.com";
+const SHIPPING_ADDRESS = "234 Main Street";
+const COUNTRY = "Australia";
+const STATE = " New South Wales ";
+const POST_CODE = "3026";
+const SUBURD = "Derrimut";
+const PHONE_NUMBER = "0412 123 456";
+const DELIVERY_METHOD = "Australia Post Economy/Envelope Service - NO TRACKING";
+const CARD_NUMBER = "4444333322221111";
+const CARD_TYPE = "Visa";
+const MONTH = "5";
+const YEAR = "2022";
+const SECURITY_NUMBER = "111";
 
 describe('Product page test', () => {
     beforeAll(async () => {
         await homePage.goToHomePage();
-        jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
+        // jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
     });
 
     it('Product Page - Verify Search for product succesfully', async () => {
@@ -84,6 +96,34 @@ describe('Product page test', () => {
 
         console.log("VP 3. Verify that Product colour is displayed in heckout page");
         expect(await checkoutPage.isColourDisplayed(PRODUCT_COLOUR)).toBeTruthy();
+    });
+
+    it('Product Page - Verify Place Order with Visa card successfully', async () => {
+        console.log("Step 1. Search for product");
+        console.log("Step 2. Click on Product");
+        console.log("Step 3. Select size");
+        console.log("Step 4. Select colour");
+        console.log("Step 5. Click add to cart button");
+        console.log("Step 6. Click checkout button");
+        console.log("Step 7. Click checkout as guest button");
+        console.log("Step 8. Proceed checkout as Guest");
+        console.log("Step 9. Input Shipping info");
+        await checkoutPage.inputShippingInfo(SHIPPING_ADDRESS, COUNTRY, STATE, POST_CODE, SUBURD, PHONE_NUMBER, DELIVERY_METHOD);
+
+        console.log("Step 10. Use Credit card as payment method");
+        await checkoutPage.useCreditCardToPlaceOrder(CARD_NUMBER, CARD_TYPE, MONTH, YEAR, SECURITY_NUMBER);
+
+        console.log("Step 11. Use Shipping address as Billing address");
+        await checkoutPage.useShippingAddressAsBillingAddress();
+
+        console.log("Step 12. Click Continue button");
+        await checkoutPage.clickContinueCheckoutButton();
+
+        console.log("Step 13. Click Place Order button");
+        await checkoutPage.clickPlaceOrderButton();
+
+        console.log("VP 1. Verify that Place Order is not success");
+        expect(await checkoutPage.isGlobalErrorMessageDisplayed("Invalid credit card details. Please try again or choose a different payment method."));
     });
 
 });

@@ -1,4 +1,5 @@
 import * as moment from 'moment';
+import { format } from 'util';
 import {
   browser,
   by,
@@ -262,6 +263,48 @@ export class BasePage extends BaseElement {
     await browser.switchTo().defaultContent();
   }
 
+  async selectDropdownByCssText(locator: string, item: string, timeOut?: number, param?: string) {
+    try {
+      const _dropdownLocator = param ? this.findElement(locator, param) : this.findElement(locator);
+      await _dropdownLocator.click();
+      await this.sleep(2);
+      const dropdownValueLocator = 'select option';
+      if (item != null || item != undefined) {
+        for (const itemValue of item.split(';')) {
+          await element(by.cssContainingText(dropdownValueLocator, itemValue)).click();
+          await this.sleep(2);
+        }
+        await this.pressEscKey();
+      }
+    } catch (e) {}
+  }
+
+  async selectValueFromDropDown(dropdownName: string, item: string) {
+    try {
+      const _dropdownXpath = format('xpath=//div[@ngbdropdown]/button[contains(.,"%s")]', dropdownName);
+      this.waitForElementVisible(_dropdownXpath);
+      const dropdownLocator = this.findElement(_dropdownXpath);
+      await dropdownLocator.click();
+      await this.sleep(2);
+      const dropdownValueLocator = '.dropdown-item';
+      if (item != null || item != undefined) {
+        await element(by.cssContainingText(dropdownValueLocator, item)).click();
+        await this.sleep(2);
+      }
+    } catch (e) {}
+  }
+
+  async pressEscKey() {
+    try {
+      browser
+        .actions()
+        .sendKeys(protractor.Key.ESCAPE)
+        .perform();
+    } catch (e) {
+      return false;
+    }
+  }
+
   async selectDropdownByText(
     locator: string,
     item: string,
@@ -275,16 +318,19 @@ export class BasePage extends BaseElement {
         : this.findElement(locator);
       await _dropdownLocator.click();
       await this.sleep(1);
-      const dropdownValueLocator = '.mat-select-content mat-option';
+      const dropdownValueLocator = 'select option';
       await element.all(by.css(dropdownValueLocator)).each(async elem => {
         await elem.getText().then(text => {
-          if (text.indexOf(item) !== -1) {
+          console.log(text + " - " + item)
+          if (text === item) {
+            console.log("Found it!")
             desiredOption = elem;
             return true;
           }
         });
       });
       if (desiredOption) {
+        console.log("Click it!")
         desiredOption.click();
       }
       if (timeOut !== null) {

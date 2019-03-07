@@ -15,4 +15,9 @@ export class AbtractPage extends BasePage {
         await this.waitForElementVisible(BasePageUI.VALIDATION_ERROR_MSG, msg);
         return await this.isElementDisplayed(BasePageUI.VALIDATION_ERROR_MSG, msg);
     }
+
+    async isGlobalErrorMessageDisplayed(msg: string) {
+        await this.waitForElementVisible(BasePageUI.GLOBAL_ERROR_MESSAGE, msg);
+        return await this.isElementDisplayed(BasePageUI.GLOBAL_ERROR_MESSAGE, msg);
+    }
 }
