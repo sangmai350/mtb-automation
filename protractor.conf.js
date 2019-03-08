@@ -17,23 +17,42 @@ exports.config = {
   //     print: function () {},
   //   },
   // },
-  capabilities: {
-    'browserstack.user': 'sang63',
-    'browserstack.key': 'ubeopqU5WqwRpiuXshD5',
-    'os': 'Windows',
-    'os_version': '10',
-    'browserName': 'Chrome',
-    chromeOptions: {
-      args: ['start-maximized', 'incognito', 'disable-extensions', 'ignore-certificate-errors', 'ignore-ssl-errors'],
-    },
-    'browser_version': '73.0 beta',
-    'resolution': '1920x1080',
-    framework: 'jasmine',
-    jasmineNodeOpts: {
-      showColors: true,
-      defaultTimeoutInterval: 500000,
-      print: function() {}
-    },
+  allScriptsTimeout: 360000,
+  // capabilities: {
+  //   'browserstack.user': 'sang63',
+  //   'browserstack.key': 'ubeopqU5WqwRpiuXshD5',
+  //   'os': 'Windows',
+  //   'os_version': '10',
+  //   'browserName': 'Chrome',
+  //   chromeOptions: {
+  //     args: ['start-maximized', 'incognito', 'disable-extensions', 'ignore-certificate-errors', 'ignore-ssl-errors'],
+  //   },
+  //   'browser_version': '73.0 beta',
+  //   'resolution': '1920x1080'
+  // },
+  'commonCapabilities': {
+    'browserstack.user': process.env.BROWSERSTACK_USERNAME || 'sang63',
+    'browserstack.key': process.env.BROWSERSTACK_ACCESS_KEY || 'ubeopqU5WqwRpiuXshD5',
+    'build': 'protractor-browserstack',
+    'name': 'parallel_test',
+    'browserstack.debug': 'true',
+    'browserName': 'Chrome'
+  },
+
+  'multiCapabilities': [{
+    'browserName': 'Chrome'
+  }, {
+    'browserName': 'Safari'
+  }, {
+    'browserName': 'Firefox'
+  }, {
+    'browserName': 'IE'
+  }],
+  framework: 'jasmine',
+  jasmineNodeOpts: {
+    showColors: true,
+    defaultTimeoutInterval: 500000,
+    print: function () {}
   },
   plugins: [{
     package: 'aurelia-protractor-plugin'
@@ -60,6 +79,9 @@ exports.config = {
         disableWarnings: true,
         fast: true
       });
-    // browser.ignoreSynchronization = true;
+    browser.ignoreSynchronization = true;
   },
 };
+exports.config.multiCapabilities.forEach(function (caps) {
+  for (var i in exports.config.commonCapabilities) caps[i] = caps[i] || exports.config.commonCapabilities[i];
+});
