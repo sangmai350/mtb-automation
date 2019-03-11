@@ -41,12 +41,12 @@ exports.config = {
 
   'multiCapabilities': [{
     'browserName': 'Chrome'
-  }, {
-    'browserName': 'Safari'
-  }, {
-    'browserName': 'Firefox'
-  }, {
-    'browserName': 'IE'
+    // }, {
+    //   'browserName': 'Safari'
+    // }, {
+    //   'browserName': 'Firefox'
+    // }, {
+    //   'browserName': 'IE'
   }],
   framework: 'jasmine',
   jasmineNodeOpts: {
@@ -59,7 +59,7 @@ exports.config = {
   }],
   SELENIUM_PROMISE_MANAGER: false,
   specs: [
-    // './e2e/specs/account.e2e-spec.ts',
+    './e2e/specs/account.e2e-spec.ts',
     './e2e/specs/product.e2e-spec.ts',
   ],
   onPrepare: function () {
