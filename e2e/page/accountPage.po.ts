@@ -26,6 +26,7 @@ export class AccountPage extends AbtractPage {
     async signOut() {
         await this.waitForElementVisible(AccountPageUI.MY_ACCOUNT_BUTTON);
         await this.click(AccountPageUI.MY_ACCOUNT_BUTTON);
+        await this.sleep(2);
         await this.waitForElementVisible(AccountPageUI.SIGNOUT_BUTTON);
         await this.click(AccountPageUI.SIGNOUT_BUTTON);
     }

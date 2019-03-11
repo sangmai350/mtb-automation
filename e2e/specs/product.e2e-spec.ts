@@ -32,6 +32,7 @@ const SECURITY_NUMBER = "111";
 describe('Product page test', () => {
     beforeAll(async () => {
         await homePage.goToHomePage();
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 200000;
     });
 
     it('Product Page - Verify Search for product succesfully', async () => {
@@ -122,7 +123,7 @@ describe('Product page test', () => {
         await checkoutPage.clickPlaceOrderButton();
 
         console.log("VP 1. Verify that Place Order is not success");
-        expect(await checkoutPage.isGlobalErrorMessageDisplayed("Invalid credit card details. Please try again or choose a different payment method."));
+        expect(await checkoutPage.isHeader2TextDisplayed("Thank you for shopping with us!"));
     });
 
 });

@@ -16,7 +16,7 @@ const EMAIL = "qa" + BasePage.getUniqueId(5) + "@gmail.com";
 describe('Account page test', () => {
     beforeAll(async () => {
         await homePage.goToHomePage();
-        jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 200000;
     });
 
     
@@ -80,7 +80,10 @@ describe('Account page test', () => {
         console.log("Step 2. Sign up with correct credentials");
         await accountPage.register(FIRST_NAME, LAST_NAME, EMAIL, COMPANY, Constants.PASSWORD, Constants.PASSWORD, true);
 
-        console.log("Step 3. Verify that Account Summary page is displayed");
+        console.log("VP 1. Verify that Account Summary page is displayed");
         expect(await accountPage.isOverviewEmailDisplayed(EMAIL)).toBeTruthy();
+
+        console.log("Step 3. Logout");
+        await accountPage.signOut();
     });
 });
