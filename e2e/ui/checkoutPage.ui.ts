@@ -9,7 +9,7 @@ export class CheckoutPageUI {
   static readonly COLOUR = 'xpath=//p[span[text()="Colour: "]]//span[@class="transaction-line-views-selected-option-value"]';
   static readonly SHIP_ADDRESS = 'css=#shipaddress-addr1';
   static readonly COUNTRY_SELECTOR = 'css=#shipaddresscountry';
-  static readonly COUNTRY_OPTION = 'xpath=//select[@id="shipaddresscountry"]/option[text()="Austria"]'
+  static readonly COUNTRY_OPTION = 'xpath=//select[@id="shipaddresscountry"]/option[text()="Austria"]';
   static readonly STATE_SELECTOR = 'css=#shipaddress-state';
   static readonly POST_CODE = 'css=#shipaddress-zip';
   static readonly SUBURB = 'css=#shipaddress-city';

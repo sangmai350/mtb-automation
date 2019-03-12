@@ -17,6 +17,10 @@ const condition: ProtractorExpectedConditions = protractor.ExpectedConditions;
 const timeout = Constants.TIMEOUT;
 
 export class BasePage extends BaseElement {
+
+  static getUniqueId(characters: number) {
+    return '_' + Math.random().toString(36).substr(2, characters);
+  }
   async goToUrl(url: string) {
     await browser.get(url);
     await this.sleep(5);
@@ -67,7 +71,7 @@ export class BasePage extends BaseElement {
   async typeByExecuteJS(locator: string, value: string, param: string) {
     try {
       const el = param ? this.findElement(locator, param) : this.findElement(locator);
-      return await browser.executeScript("arguments[0].value='" + value + "';", el);
+      return await browser.executeScript('arguments[0].value=\'' + value + '\';', el);
     } catch (er) {
       console.error('There is error: ' + er);
     }
@@ -162,7 +166,7 @@ export class BasePage extends BaseElement {
         timeout,
         `Control at: ${locator} can not be invisible`
       );
-    } catch (e) {}
+    } catch (e) { }
   }
 
   async waitForElementVisible(locator: string, param?: string, timewait?: number) {
@@ -170,13 +174,13 @@ export class BasePage extends BaseElement {
     try {
       const el = param ? this.findElement(locator, param) : this.findElement(locator);
       await browser.wait(condition.visibilityOf(el), time);
-    } catch (e) {}
+    } catch (e) { }
   }
 
   async waitForPageLoad(pageUrl: string) {
     try {
       await browser.wait(condition.urlContains(pageUrl));
-    } catch (e) {}
+    } catch (e) { }
   }
 
   async waitForLoading() {
@@ -188,11 +192,7 @@ export class BasePage extends BaseElement {
     try {
       const el = this.findElement(locator);
       await browser.wait(condition.presenceOf(el), timeWait);
-    } catch (e) {}
-  }
-
-  static getUniqueId(characters: number) {
-    return '_' + Math.random().toString(36).substr(2, characters);
+    } catch (e) { }
   }
 
   async getDay(dateTime: string) {
@@ -269,14 +269,14 @@ export class BasePage extends BaseElement {
       await _dropdownLocator.click();
       await this.sleep(2);
       const dropdownValueLocator = 'select option';
-      if (item != null || item != undefined) {
+      if (item != null || item !== undefined) {
         for (const itemValue of item.split(';')) {
           await element(by.cssContainingText(dropdownValueLocator, itemValue)).click();
           await this.sleep(2);
         }
         await this.pressEscKey();
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   async selectValueFromDropDown(dropdownName: string, item: string) {
@@ -287,11 +287,11 @@ export class BasePage extends BaseElement {
       await dropdownLocator.click();
       await this.sleep(2);
       const dropdownValueLocator = '.dropdown-item';
-      if (item != null || item != undefined) {
+      if (item != null || item !== undefined) {
         await element(by.cssContainingText(dropdownValueLocator, item)).click();
         await this.sleep(2);
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   async pressEscKey() {
@@ -321,22 +321,22 @@ export class BasePage extends BaseElement {
       const dropdownValueLocator = 'select option';
       await element.all(by.css(dropdownValueLocator)).each(async elem => {
         await elem.getText().then(text => {
-          console.log(text + " - " + item)
+          console.log(text + ' - ' + item);
           if (text === item) {
-            console.log("Found it!")
+            console.log('Found it!');
             desiredOption = elem;
             return true;
           }
         });
       });
       if (desiredOption) {
-        console.log("Click it!")
+        console.log('Click it!');
         desiredOption.click();
       }
       if (timeOut !== null) {
         this.sleep(timeOut);
       }
-    } catch (e) {}
+    } catch (e) { }
   }
   async checkToCheckbox(locator: string, checked: boolean, param?: string) {
     try {

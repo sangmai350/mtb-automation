@@ -4,7 +4,7 @@ import { AbtractPage } from './abtractPage.po';
 export class HomePage extends AbtractPage {
 
     async goToHomePage() {
-        await this.goToUrl("https://dev.mtbdirect.com.au");
+        await this.goToUrl('https://dev.mtbdirect.com.au');
         // await this.waitForElementInvisibility(HomePageUI.LOADING_CURSOR);
     }
 

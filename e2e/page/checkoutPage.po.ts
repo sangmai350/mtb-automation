@@ -4,7 +4,7 @@ import { AbtractPage } from './abtractPage.po';
 export class CheckoutPage extends AbtractPage {
 
     async goToHomePage() {
-        await this.goToUrl("https://dev.mtbdirect.com.au");
+        await this.goToUrl('https://dev.mtbdirect.com.au');
         // await this.waitForElementInvisibility(HomePageUI.LOADING_CURSOR);
     }
 
@@ -21,8 +21,8 @@ export class CheckoutPage extends AbtractPage {
         await this.click(CheckoutPageUI.PROCEED_TO_CHECKOUT_BTN);
     }
 
-    async inputShippingInfo(shipping_address: string, country: string, state: string, post_code: string, 
-                            suburb: string, phone_number: string, delivery_method: string) {
+    async inputShippingInfo(shipping_address: string, country: string, state: string, post_code: string,
+        suburb: string, phone_number: string, delivery_method: string) {
         await this.waitForElementVisible(CheckoutPageUI.SHIP_ADDRESS);
         await this.type(CheckoutPageUI.SHIP_ADDRESS, shipping_address);
         await this.selectDropdownByCssText(CheckoutPageUI.COUNTRY_SELECTOR, country);
@@ -48,7 +48,7 @@ export class CheckoutPage extends AbtractPage {
         await this.waitForElementVisible(CheckoutPageUI.CREDIT_CARD_TYPE);
         await this.selectDropdownByCssText(CheckoutPageUI.CREDIT_CARD_TYPE, card_type);
     }
-    
+
     async useShippingAddressAsBillingAddress() {
         await this.waitForElementVisible(CheckoutPageUI.SAME_AS_ADDRESS_CBX);
         await this.click(CheckoutPageUI.SAME_AS_ADDRESS_CBX);
@@ -66,17 +66,17 @@ export class CheckoutPage extends AbtractPage {
 
     async isItemNameDisplayed(name: string) {
         await this.waitForElementVisible(CheckoutPageUI.CHECKOUT_ITEM_NAME);
-        return  name === await this.getTextElement(CheckoutPageUI.CHECKOUT_ITEM_NAME);
+        return name === await this.getTextElement(CheckoutPageUI.CHECKOUT_ITEM_NAME);
     }
 
     async isClothingSizeDisplayed(size: string) {
         await this.waitForElementVisible(CheckoutPageUI.CLOTHING_SIZE);
-        return  size === await this.getTextElement(CheckoutPageUI.CLOTHING_SIZE);
+        return size === await this.getTextElement(CheckoutPageUI.CLOTHING_SIZE);
     }
 
     async isColourDisplayed(colour: string) {
         await this.waitForElementVisible(CheckoutPageUI.COLOUR);
-        return  colour === await this.getTextElement(CheckoutPageUI.COLOUR);
+        return colour === await this.getTextElement(CheckoutPageUI.COLOUR);
     }
 
     constructor() {

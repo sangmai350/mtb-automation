@@ -1,17 +1,16 @@
 import { BasePage } from '../common/base-page';
-import { TestBase } from '../common/test-base';
 import { HomePage } from '../page/homePage.po';
 import { browser } from 'protractor';
 import { AccountPage } from '../page/accountPage.po';
 import { Constants } from '../common/constant';
 
-let homePage = new HomePage();
-let accountPage = new AccountPage();
+const homePage = new HomePage();
+const accountPage = new AccountPage();
 
-const FIRST_NAME = "Sang"
-const LAST_NAME = "Mai"
-const COMPANY = "MTB"
-const EMAIL = "qa" + BasePage.getUniqueId(5) + "@gmail.com";
+const FIRST_NAME = 'Sang';
+const LAST_NAME = 'Mai';
+const COMPANY = 'MTB';
+const EMAIL = 'qa' + BasePage.getUniqueId(5) + '@gmail.com';
 
 describe('Account page test', () => {
     beforeAll(async () => {
@@ -63,30 +62,30 @@ describe('Account page test', () => {
     // });
 
     it('Account Page - Verify Sign in succesfully', async () => {
-        console.log("Step 1. Click My Account button");
+        console.log('Step 1. Click My Account button');
         await homePage.clickMyAccountButton();
 
-        console.log("Step 2. Login with correct credentials");
+        console.log('Step 2. Login with correct credentials');
         await accountPage.login(Constants.EMAIL, Constants.PASSWORD);
 
-        console.log("VP 1. Verify that Account Summary page is displayed");
+        console.log('VP 1. Verify that Account Summary page is displayed');
         expect(await accountPage.isOverviewEmailDisplayed(Constants.EMAIL)).toBeTruthy();
 
-        console.log("Step 3. Logout");
+        console.log('Step 3. Logout');
         await accountPage.signOut();
     });
 
     it('Account Page - Verify Sign up succesfully', async () => {
-        console.log("Step 1. Click My Account button");
+        console.log('Step 1. Click My Account button');
         await homePage.clickMyAccountButton();
 
-        console.log("Step 2. Sign up with correct credentials");
+        console.log('Step 2. Sign up with correct credentials');
         await accountPage.register(FIRST_NAME, LAST_NAME, EMAIL, COMPANY, Constants.PASSWORD, Constants.PASSWORD, true);
 
-        console.log("VP 1. Verify that Account Summary page is displayed");
+        console.log('VP 1. Verify that Account Summary page is displayed');
         expect(await accountPage.isOverviewEmailDisplayed(EMAIL)).toBeTruthy();
 
-        console.log("Step 3. Logout");
+        console.log('Step 3. Logout');
         await accountPage.signOut();
     });
 });

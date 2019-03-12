@@ -10,8 +10,8 @@ export class AccountPage extends AbtractPage {
         await this.click(AccountPageUI.LOGIN_BTN);
     }
 
-    async register(firstName: string, lastName: string, email: string, 
-                company: string, password: string, password2: string, subscribe: boolean) {
+    async register(firstName: string, lastName: string, email: string,
+        company: string, password: string, password2: string, subscribe: boolean) {
         await this.waitForElementVisible(AccountPageUI.REGISTER_FIRST_NAME_IPT);
         await this.type(AccountPageUI.REGISTER_FIRST_NAME_IPT, firstName);
         await this.type(AccountPageUI.REGISTER_LAST_NAME_IPT, lastName);
@@ -19,7 +19,7 @@ export class AccountPage extends AbtractPage {
         await this.type(AccountPageUI.REGISTER_COMPANY_IPT, company);
         await this.type(AccountPageUI.REGISTER_PWD_IPT, password);
         await this.type(AccountPageUI.REGISTER_CONFIRM_PWD_IPT, password2);
-        if (subscribe) await this.click(AccountPageUI.REGISTER_EMAIL_SUBSCRIBE_CBX);
+        if (subscribe) { await this.click(AccountPageUI.REGISTER_EMAIL_SUBSCRIBE_CBX); }
         await this.click(AccountPageUI.REGISTER_CONTINUE_BTN);
     }
 
@@ -33,15 +33,13 @@ export class AccountPage extends AbtractPage {
 
     async isOverviewEmailDisplayed(email: string) {
         await this.waitForElementVisible(AccountPageUI.OVERVIEW_EMAIL);
-        return  email === await this.getTextElement(AccountPageUI.OVERVIEW_EMAIL);
+        return email === await this.getTextElement(AccountPageUI.OVERVIEW_EMAIL);
     }
 
     async isIncorrectCredentialsMessageDisplayed() {
         await this.waitForElementVisible(AccountPageUI.INCORRECT_CREDENTIALS_MSG);
         return await this.isElementDisplayed(AccountPageUI.INCORRECT_CREDENTIALS_MSG);
     }
-
-
 
     constructor() {
         super();

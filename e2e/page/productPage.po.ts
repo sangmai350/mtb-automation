@@ -42,7 +42,6 @@ export class ProductPage extends AbtractPage {
         await this.waitForElementVisible(ProductPageUI.SECONDARY_CHECKOUT_BTN);
         await this.click(ProductPageUI.SECONDARY_CHECKOUT_BTN);
     }
-    
     async isProductNameDisplayedInMiniCart(name: string) {
         await this.waitForElementVisible(ProductPageUI.CHECKOUT_ITEM_NAME, name);
         return await this.isElementDisplayed(ProductPageUI.CHECKOUT_ITEM_NAME, name);
