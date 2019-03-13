@@ -5,8 +5,8 @@ export class ProductPageUI {
   static readonly ITEM_SIZE = 'xpath=//label[@data-label="label-custcol_matrix_clothing_size" and contains(.,"%s")]';
   static readonly ITEM_COLOUR = 'xpath=//label[@data-label="label-custcol_matrix_colour" and contains(.,"%s")]';
   static readonly ADD_TO_CART = 'css=.cart-add-to-cart-button-button';
-  static readonly SECONDARY_CHECKOUT_BTN = 'xpath=//div[@class="header-secondary-wrapper"]//a[@class="header-mini-cart-button-checkout"]';
-  static readonly CHECKOUT_ITEM_NAME = 'xpath=//div[@class="header-secondary-wrapper"]//a[@class="header-mini-cart-item-cell-title-navigable"]';
-  static readonly CLOTHING_SIZE = 'xpath=//div[@class="header-secondary-wrapper"]//p[span[text()="Clothing Size: "]]//span[@class="transaction-line-views-selected-option-value"]';
-  static readonly COLOUR = 'xpath=//div[@class="header-secondary-wrapper"]//p[span[text()="Colour: "]]//span[@class="transaction-line-views-selected-option-value"]';
+  static readonly SECONDARY_CHECKOUT_BTN = 'xpath=//nav[@class="header-menu-secondary-nav"]//a[@class="header-mini-cart-button-checkout"]';
+  static readonly CHECKOUT_ITEM_NAME = 'xpath=//nav[@class="header-menu-secondary-nav"]//a[@class="header-mini-cart-item-cell-title-navigable"]';
+  static readonly CLOTHING_SIZE = 'xpath=//nav[@class="header-menu-secondary-nav"]//p[span[text()="Clothing Size: "]]//span[@class="transaction-line-views-selected-option-value"]';
+  static readonly COLOUR = 'xpath=//nav[@class="header-menu-secondary-nav"]//p[span[text()="Colour: "]]//span[@class="transaction-line-views-selected-option-value"]';
 }
