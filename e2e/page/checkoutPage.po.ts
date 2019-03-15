@@ -66,12 +66,14 @@ export class CheckoutPage extends AbtractPage {
 
     async isItemNameDisplayed(name: string) {
         await this.waitForElementVisible(CheckoutPageUI.CHECKOUT_ITEM_NAME);
-        return name === await this.getTextElement(CheckoutPageUI.CHECKOUT_ITEM_NAME);
+        const text: string  = await  this.getTextElement(CheckoutPageUI.CHECKOUT_ITEM_NAME);
+        return name === text.trim();
     }
 
     async isClothingSizeDisplayed(size: string) {
         await this.waitForElementVisible(CheckoutPageUI.CLOTHING_SIZE);
-        return size === await this.getTextElement(CheckoutPageUI.CLOTHING_SIZE);
+        const text: string  = await  this.getTextElement(CheckoutPageUI.CLOTHING_SIZE);
+        return size === text.trim();
     }
 
     async isColourDisplayed(colour: string) {
