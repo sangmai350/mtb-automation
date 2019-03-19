@@ -3,9 +3,17 @@ let SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 var params = require('./cmd.params.js');
 var browser = params.browser;
 var multiCapabilities = browser.split(',').map(function (browserName) {
-  return {
-    browserName: browserName.trim()
-  };
+  if (browserName === "ie")
+    return {
+      browserName: browserName.trim(),
+      'os': 'Windows',
+      'os_version': '8.1',
+      'browser_version': '11.0',
+    };
+  else 
+    return {
+      browserName: browserName.trim(),
+    };
 })
 
 exports.config = {
@@ -44,7 +52,7 @@ exports.config = {
   SELENIUM_PROMISE_MANAGER: false,
   specs: [
     './e2e/specs/account.e2e-spec.ts',
-    // './e2e/specs/product.e2e-spec.ts',
+    './e2e/specs/product.e2e-spec.ts',
   ],
   onPrepare: function () {
     jasmine.getEnv().addReporter(new SpecReporter({
